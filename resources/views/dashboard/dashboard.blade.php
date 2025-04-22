@@ -1,6 +1,6 @@
 @extends("layouts.layout")
 @section("content")
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
 
 <div class="dashboard-container">
     <!-- Sidebar -->
@@ -150,7 +150,6 @@
                                     <th>ID</th>
                                     <th>Name</th>
                                     <th>Email</th>
-                                    <th>Department</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -163,12 +162,7 @@
                                         <td>{{$user->id}}</td>
                                         <td>{{$user->name}}</td>
                                         <td>{{$user->email}}</td>
-                                        <td>
-                                            @php
-                                                // Assuming you have a user_department relationship
-                                                
-                                            @endphp
-                                        </td>
+                                       
                                         <td>
                                             <div class="btn-group">
                                                 <button data-url="{{route('updateuser', $user->id)}}" 
@@ -334,21 +328,6 @@
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-key"></i></span>
                             <input type="password" name="password" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="department" class="form-label">Department (Optional)</label>
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="bi bi-building"></i></span>
-                            <select name="department_id" class="form-select">
-                                <option value="">Select Department</option>
-                                @php
-                                    $departments = DB::table('departments')->get() ?? [];
-                                @endphp
-                                 @foreach ($departments as $department)
-                                    <option value="{{$department->id}}">{{$department->departmentname}}</option>
-                                @endforeach
-                            </select>
                         </div>
                     </div>
                 </div>
