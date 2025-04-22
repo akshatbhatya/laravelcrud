@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DepartmentAssigns;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class assignController extends Controller
@@ -19,5 +20,14 @@ class assignController extends Controller
             "status"=>201
         ],201);
     }
+   }
+
+   public function data(){
+    $res= DepartmentAssigns::with(['user', 'department'])->get();
+    return response()->json(
+        ["data"=>$res],200
+    );
+
+    
    }
 }

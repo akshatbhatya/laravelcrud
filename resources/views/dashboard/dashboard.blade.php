@@ -274,29 +274,27 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @php
-                                    // Join users, departments and assignments
-                                    $assignments = DB::table('users')
-                                        ->join('user_department', 'users.id', '=', 'user_department.user_id')
-                                        ->join('departments', 'departments.id', '=', 'user_department.department_id')
-                                        ->select('users.name as user_name', 'users.id as user_id', 
-                                                'departments.name as dept_name', 'departments.id as dept_id',
-                                                'user_department.created_at')
-                                        ->get() ?? [];
-                                @endphp --}}
-                                {{-- @foreach ($assignments as $assignment)
+                                @php
+    use App\Models\DepartmentAssigns;
+    $assignments = DepartmentAssigns::with(['user', 'department'])->get()??[];
+@endphp
+
+
+
+                                 @foreach ($assignments as $assignment)
+                                
                                     <tr>
-                                        <td><span class="fw-bold">{{$assignment->user_name}}</span></td>
-                                        <td><span class="badge bg-success rounded-pill">{{$assignment->dept_name}}</span></td>
+                                        <td><span class="fw-bold">{{$assignment->user->name ?? 'No User'}}</span></td>
+                                        <td><span class="badge bg-success rounded-pill">{{$assignment->department->departmentname ?? 'No Department' }}</span></td>
                                         <td>{{date('Y-m-d', strtotime($assignment->created_at))}}</td>
                                         <td>
                                             <button class="btn btn-sm btn-outline-danger rounded-pill"
-                                                onclick="removeAssignment({{$assignment->user_id}}, {{$assignment->dept_id}})">
+                                                onclick="removeAssignment({{$assignment->user->id}}, {{$assignment->department->id}})">
                                                 <i class="bi bi-x-circle me-1"></i> Remove
                                             </button>
                                         </td>
                                     </tr>
-                                @endforeach --}}
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

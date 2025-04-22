@@ -46,7 +46,8 @@ class User extends Authenticatable
         ];
     }
 
-    public function departement(){
-        $this->hasOne(Department::class);
+    public function departmentAssigns()
+    {
+        return $this->hasMany(DepartmentAssigns::class, 'userid');
     }
 }

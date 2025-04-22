@@ -44,3 +44,5 @@ Route::post("/update/user/{id}",[UserController::class,"updateUser"])->name("upd
 Route::post("/add/department",[DepartmentController::class,"addDepartment"])->name("createdepartment");
 
 Route::post("/assign/department",[assignController::class,"assign"])->name("assigndepartment");
+
+Route::get("/data",[assignController::class,"data"])->name("data");
