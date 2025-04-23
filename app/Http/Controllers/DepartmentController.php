@@ -14,6 +14,15 @@ class DepartmentController extends Controller
     }
     public function addDepartment(Request $request){
     $res=  $this->model->create($request->except("_token"));
-    print_r($res);
+    return response()->redirectTo("dashboard");
+    }
+
+    public function deleteDepartment($id){
+        $data=$this->model->findOrFail($id);
+        $data->delete();
+        return response()->json([
+            "message"=>"deleted",
+            "status"=>200
+        ],200);
     }
 }

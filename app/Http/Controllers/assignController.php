@@ -15,10 +15,7 @@ class assignController extends Controller
    public function assign(Request $request){
     $res=$this->model->create($request->except("_token"));
     if($res){
-        return response()->json([
-            "message"=>"added",
-            "status"=>201
-        ],201);
+        return response()->redirectTo("dashboard");
     }
    }
 
@@ -29,5 +26,13 @@ class assignController extends Controller
     );
 
     
+   }
+   public function delete($id){
+    $data=$this->model->findOrFail($id);
+    
+    if($data){
+        $data->delete();
+        return response()->json(["data"=>"deleted"]);
+    }
    }
 }
