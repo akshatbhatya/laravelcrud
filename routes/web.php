@@ -15,7 +15,7 @@ Route::get('/', function () {
 
 Route::get("/admin/signup",function(){
     return view("admin.signup");
-})->name('adminSignup');
+})->name('adminsignup');
 
 Route::get("/login",function(){
     return view("admin.login");
@@ -33,7 +33,7 @@ Route::get("/dashboard",function(){
     return view("dashboard.dashboard",compact("data"));
 })->middleware("LoginVerify")->name("dashboard");
 
-Route::get("/logout",[HandleLoginRequest::class,"logout"])->name("logout")->middleware("logout");
+Route::get("/logout",[HandleLoginRequest::class,"logout"])->name("logout")->middleware("LoginVerify");
 
 Route::post("/add/user",[UserController::class,"createUser"])->name('adduser');
 

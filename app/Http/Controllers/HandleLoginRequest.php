@@ -21,6 +21,7 @@ class HandleLoginRequest extends Controller
     }
 
     public function logout(){
+        
 
         if(Auth::check()){
             Auth::logout();
@@ -28,9 +29,9 @@ class HandleLoginRequest extends Controller
         }
 
         if(Auth::guard("admins")->check()){
-          Auth::guard("admins")->logout();
-            return redirect()->route("login");
-          }
+            Auth::guard("admins")->logout();
+              return redirect()->route("login");
+            }
             
 
         if(Auth::guard("author")->check()){

@@ -8,12 +8,27 @@
             <div class="sidebar-header p-3 text-center border-bottom">
                 <h3><i class="bi bi-speedometer2 me-2"></i>Admin Panel</h3>
             </div>
+            
             <div class="user-info p-3 border-bottom">
                 <div class="d-flex align-items-center">
-                    <div class="avatar bg-primary rounded-circle me-2 d-flex align-items-center justify-content-center"
-                        style="width: 40px; height: 40px;">
-                        <span>{{substr($data->name, 0, 1)}}</span>
+                    
+
+                    @if ($data->image)
+                    <div class="d-inline-flex align-items-center justify-content-center rounded-circle overflow-hidden border border-2 border-secondary shadow-sm" style="width:40px;height:40px;">
+                        <img
+                            src="{{ $data->image ?? asset('images/avatar-placeholder.png') }}"
+                            alt="avatar"
+                            class="img-fluid h-100 w-100 object-fit-cover"
+                        >
                     </div>
+                    
+                    @else
+                    <div class="avatar bg-primary rounded-circle me-2 d-flex align-items-center justify-content-center"
+                    style="width: 40px; height: 40px;">
+                    <span>{{substr($data->name, 0, 1)}}</span>
+                </div>
+                    @endif
+                    
                     <div>
                         <div class="fw-bold">{{$data->name}}</div>
                         <small class="text-white">Administrator</small>

@@ -9,8 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
 </head>
 <body>
-   
- @if (!Auth::guard("admins")->check())
+ @if (!auth()->guard("admins")->check())
  <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Navbar</a>
